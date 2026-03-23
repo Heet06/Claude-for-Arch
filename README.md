@@ -6,6 +6,17 @@ Install and update Claude Desktop on Arch Linux using system Electron and a ligh
 
 This project is community-maintained and is not affiliated with Anthropic.
 
+## Legal Notice
+
+**Important:** This project is not an official installation method for Claude Desktop. The scripts automate installation and updates, but:
+
+- **No repackaging**: The Claude Desktop binary is downloaded directly from Anthropic's official servers—this project does not redistribute, modify, or repackage the binary.
+- **Users agree to Claude's Terms**: Anyone using these scripts must comply with Claude Desktop's End User License Agreement and Terms of Service.
+- **Not endorsed by Anthropic**: Anthropic has not endorsed this project. They may request removal at any time.
+- **Use at your own risk**: This is an unofficial community project created for educational purposes.
+
+For official installation guidance, see the [Claude Desktop documentation](https://docs.anthropic.com/en/docs/build-a-bot/desktop-app).
+
 ## Support matrix
 
 - Distribution: Arch Linux (primary target)
@@ -21,6 +32,16 @@ Known limitation:
 
 - `claude-install-simple.sh`: initial install script
 - `claude-auto-update.sh`: update checker and installer
+
+## Features
+
+- ✅ **Global hotkey**: Ctrl+Alt+Space to launch Claude Desktop (registered via desktop entry)
+- ✅ **MCP Server support**: Claude Desktop can load and use Model Context Protocol servers
+- ✅ **Desktop integration**: Claude appears in application menus and can handle URI schemes
+- ✅ **Auto-detection**: Automatically detects Electron installation path on your system
+- ✅ **Easy updates**: Simple command to check for and install new Claude versions
+- ✅ **Backup & rollback**: Automatic backups before updates with easy rollback capability
+- ✅ **Clean installation**: Uses symlinks instead of copying files to minimize disk usage
 
 ## Requirements
 
