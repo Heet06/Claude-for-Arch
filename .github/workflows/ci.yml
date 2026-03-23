@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  shell-quality:
+    name: Shell quality checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck shfmt
+
+      - name: Check script formatting
+        run: shfmt -d -i 4 -ci claude-install-simple.sh claude-auto-update.sh
+
+      - name: Run shellcheck
+        run: shellcheck -x claude-install-simple.sh claude-auto-update.sh
+
+  smoke-help:
+    name: Script smoke checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify scripts are present and bash-based
+        run: |
+          test -f claude-install-simple.sh
+          test -f claude-auto-update.sh
+          head -n 1 claude-install-simple.sh | grep -q '^#!/bin/bash$'
+          head -n 1 claude-auto-update.sh | grep -q '^#!/bin/bash$'
+
+      - name: Validate updater help output
+        run: ./claude-auto-update.sh --help
