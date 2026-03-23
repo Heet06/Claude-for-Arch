@@ -33,7 +33,7 @@ detect_electron_resources_dir() {
     fi
 
     # Prefer package metadata on Arch.
-    if command -v pacman &> /dev/null; then
+    if command -v pacman &>/dev/null; then
         while IFS= read -r pkg; do
             while IFS= read -r listed_path; do
                 candidate="${listed_path%/}"
@@ -75,8 +75,8 @@ echo
 log_info "Checking dependencies..."
 missing=()
 for cmd in curl 7z electron asar xdpyinfo wmctrl; do
-    if ! command -v $cmd &> /dev/null; then
-        missing+=($cmd)
+    if ! command -v "$cmd" &>/dev/null; then
+        missing+=("$cmd")
     fi
 done
 
@@ -100,14 +100,14 @@ curl -L -o Claude.msix "$DOWNLOAD_URL"
 # Extract MSIX
 log_info "Extracting..."
 rm -rf claude-app
-7z x Claude.msix -oclaude-app > /dev/null
+7z x Claude.msix -oclaude-app >/dev/null
 
 # Extract MCP runtime files (required for MCP to work)
 log_info "Extracting MCP runtime files..."
 cd claude-app/app/resources
 
 # Check if asar command is available
-if ! command -v asar &> /dev/null; then
+if ! command -v asar &>/dev/null; then
     log_error "asar command not found. Install with: sudo pacman -S asar"
     exit 1
 fi
@@ -152,7 +152,7 @@ log_info "✓ Symlinks created"
 
 # Create launcher
 log_info "Creating launcher..."
-cat > claude-desktop.sh << 'LAUNCHER'
+cat >claude-desktop.sh <<'LAUNCHER'
 #!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -190,7 +190,7 @@ chmod +x claude-desktop.sh
 # Desktop integration
 log_info "Setting up desktop integration..."
 mkdir -p ~/.local/share/applications
-cat > ~/.local/share/applications/claude-desktop.desktop << EOF
+cat >~/.local/share/applications/claude-desktop.desktop <<EOF
 [Desktop Entry]
 Name=Claude Desktop
 Comment=Claude AI Assistant
@@ -214,7 +214,7 @@ xdg-mime default claude-desktop.desktop x-scheme-handler/claude 2>/dev/null || t
 # Create MCP config if needed
 if [ ! -f ~/.config/Claude/claude_desktop_config.json ]; then
     mkdir -p ~/.config/Claude
-    cat > ~/.config/Claude/claude_desktop_config.json << 'CONFIG'
+    cat >~/.config/Claude/claude_desktop_config.json <<'CONFIG'
 {
   "mcpServers": {}
 }
