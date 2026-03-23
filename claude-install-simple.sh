@@ -4,7 +4,8 @@ set -e
 # Claude Desktop Installation Script - Simple & Working Approach
 # This keeps the asar file intact and runs from it (as designed)
 
-INSTALL_DIR="$HOME/claude-desktop-build"
+# Allow custom install directory via environment variable
+INSTALL_DIR="${CLAUDE_INSTALL_DIR:-$HOME/claude-desktop-build}"
 DOWNLOAD_URL="https://claude.ai/api/desktop/win32/x64/msix/latest/redirect"
 ELECTRON_RESOURCES_PATH=""
 

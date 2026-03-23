@@ -79,6 +79,26 @@ If auto-detection fails for your Electron layout:
 ELECTRON_RESOURCES_DIR=/usr/lib/electron39/resources ./claude-install-simple.sh
 ```
 
+## Custom installation directory
+
+By default, Claude is installed to `$HOME/claude-desktop-build`. To use a different directory:
+
+```bash
+CLAUDE_INSTALL_DIR=/opt/claude ./claude-install-simple.sh
+```
+
+Or use any other path:
+
+```bash
+CLAUDE_INSTALL_DIR=/mnt/storage/claude ./claude-install-simple.sh
+```
+
+For updates, use the same variable:
+
+```bash
+CLAUDE_INSTALL_DIR=/opt/claude ./claude-auto-update.sh
+```
+
 ## Update workflow
 
 Check only:
@@ -132,10 +152,16 @@ ELECTRON_RESOURCES_DIR=/path/to/electron/resources ./claude-auto-update.sh
 
 ## Uninstall
 
-Remove installation directory:
+Remove installation directory (adjust path if you used a custom `CLAUDE_INSTALL_DIR`):
 
 ```bash
 rm -rf "$HOME/claude-desktop-build"
+```
+
+Or if installed in a custom location:
+
+```bash
+rm -rf /path/to/your/custom/claude/directory
 ```
 
 Remove desktop entry and icon:

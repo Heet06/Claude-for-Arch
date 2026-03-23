@@ -4,8 +4,10 @@ set -e
 # Claude Desktop Auto-Update Script for Arch Linux
 # This script checks for and installs new versions of Claude Desktop
 
-INSTALL_DIR="$HOME/claude-desktop-build"
-BACKUP_DIR="$HOME/claude-desktop-backups"
+# Allow custom install directory via environment variable
+INSTALL_DIR="${CLAUDE_INSTALL_DIR:-$HOME/claude-desktop-build}"
+# Backups go to a sibling directory relative to install location
+BACKUP_DIR="$(dirname "$INSTALL_DIR")/claude-desktop-backups"
 UPDATE_API="https://api.anthropic.com/api/desktop/win32/x64/msix/update"
 DEVICE_ID="linux-build-$(uname -n)"
 ELECTRON_RESOURCES_PATH=""
