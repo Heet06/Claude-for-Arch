@@ -15,7 +15,7 @@ This project is community-maintained and is not affiliated with Anthropic.
 - **Not endorsed by Anthropic**: Anthropic has not endorsed this project. They may request removal at any time.
 - **Use at your own risk**: This is an unofficial community project created for educational purposes.
 
-For official installation guidance, see the [Claude Desktop documentation](https://docs.anthropic.com/en/docs/build-a-bot/desktop-app).
+For official Claude Desktop, visit [https://claude.com](https://claude.com).
 
 ## Support matrix
 
@@ -67,7 +67,7 @@ sudo pacman -S electron curl p7zip nodejs asar xorg-xdpyinfo wmctrl
 Clone and run:
 
 ```bash
-git clone https://github.com/heet06/Claude-for-Arch.git
+git clone https://github.com/Heet06/Claude-for-Arch.git
 cd Claude-for-Arch
 chmod +x claude-install-simple.sh claude-auto-update.sh
 ./claude-install-simple.sh
